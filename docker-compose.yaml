@@ -1,0 +1,14 @@
+version: '3'
+networks:
+  roboshop:
+    driver: bridge
+volumes:
+  # docker volume create mongodb
+  mongodb:
+services:
+  # docker run -d --name mongodb --network roboshop -v mongodb:/data/db mongodb:v1
+  mongodb:
+    image: mongodb:v1
+    container_name: mongodb
+    volumes:
+    - mongodb: /data/db
