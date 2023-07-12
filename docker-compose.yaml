@@ -5,7 +5,11 @@ networks:
 volumes:
   # docker volume create mongodb
   mongodb:
-    type: volume
+    driver: local
+    driver_opts:
+      o: bind
+      type : none
+      device: /home/ec2-user/mongodb
 services:
   # docker run -d --name mongodb --network roboshop -v mongodb:/data/db mongodb:v1
   mongodb:
