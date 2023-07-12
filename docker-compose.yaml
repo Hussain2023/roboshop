@@ -5,6 +5,7 @@ networks:
 volumes:
   # docker volume create mongodb
   mongodb:
+    type: volume
 services:
   # docker run -d --name mongodb --network roboshop -v mongodb:/data/db mongodb:v1
   mongodb:
