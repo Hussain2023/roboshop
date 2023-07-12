@@ -5,7 +5,13 @@ networks:
 volumes:
   # docker volume create mongodb
   mongodb:
+  redis:
 services:
+  catalogue:
+    image: catalogue:v1
+    container_name: catalogue
+    depends_on:
+      - mongodb
   # docker run -d --name mongodb --network roboshop -v mongodb:/data/db mongodb:v1
   mongodb:
     image: mongodb:v1
@@ -16,3 +22,15 @@ services:
       target: /data/db
       volume:
          nocopy: true
+  redis:
+    image: redis
+    container_name: redis
+    volumes:
+    - type: volume
+      source: redis
+      target: /data
+      volume: 
+         nocopy: true
+ 
+
+
