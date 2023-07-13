@@ -7,6 +7,7 @@ volumes:
   mongodb:
   redis:
   mysql:
+  rabbitmq:
 services:
   catalogue:
     image: catalogue:v1
@@ -68,6 +69,23 @@ services:
     depends_on:
       - cart
       - mysql
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    volumes:
+      - type: volume
+        source: rabbitmq
+        target: /var/lib/rabbitmq
+        volume: 
+          nocopy: true
+  payment:
+    image: payment:v1
+    container_name: payment
+    depends_on:
+      - rabbitmq
+      - cart
+      - user
+    
  
 
 
