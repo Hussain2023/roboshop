@@ -1,9 +1,10 @@
 FROM node:14
 
 EXPOSE 8080
-
+RUN addgroup -S catalogue && adduser -S catalogue catalogue
 WORKDIR /opt/server
-
+RUN chown -R catalogue:catalogue /opt/user
+USER catalogue
 COPY package.json /opt/server/
 
 RUN npm install
